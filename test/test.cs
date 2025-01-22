@@ -48,5 +48,20 @@ namespace TestProject
         }
 
         // Additional steps for other tests can be added here following the same pattern.
+
+        [When(@"I type '([^']*)' into the name input")]
+        public async Task WhenITypeIntoTheNameInput(string text)
+        {
+            var nameInput = _page.Locator("#developer-name");
+            await nameInput.FillAsync(text);
+        }
+
+        [Then(@"the name input should have value '([^']*)'")]
+        public async Task ThenTheNameInputShouldHaveValue(string expectedValue)
+        {
+            var nameInput = _page.Locator("#developer-name");
+            var value = await nameInput.InputValueAsync();
+            value.Should().Be(expectedValue);
+        }
     }
 }
