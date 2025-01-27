@@ -1,6 +1,6 @@
 using NUnit.Framework;
+using Microsoft.Playwright;
 using System.Threading.Tasks;
-using Microsoft.Playwright.NUnit;
 
 [TestFixture]
 public class TestSuite : PageTest
