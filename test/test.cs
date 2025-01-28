@@ -54,6 +54,55 @@ namespace TestNamespace
             value.Should().Be("Parker");
         }
 
-        // Additional steps for other tests can be added here...
+        using FluentAssertions;
+using Microsoft.Playwright;
+using TechTalk.SpecFlow;
+
+namespace TestProject
+{
+    [Binding]
+    public class TestSteps
+    {
+        private readonly IPage _page;
+
+        public TestSteps(IPage page)
+        {
+            _page = page;
+        }
+
+        [Given(@"I navigate to the example page")]
+        public async Task GivenINavigateToTheExamplePage()
+        {
+            await _page.GotoAsync("https://devexpress.github.io/testcafe/example/");
+        }
+
+        [When(@"I type the name 'Peter' into the name input")]
+        public async Task WhenITypeTheNamePeterIntoTheNameInput()
+        {
+            await _page.FillAsync("#developer-name", "Peter");
+        }
+
+        [When(@"I replace it with 'Parker'")]
+        public async Task WhenIReplaceItWithParker()
+        {
+            await _page.FillAsync("#developer-name", "Parker");
+        }
+
+        [When(@"I correct it to 'Parker' with a caret position")]
+        public async Task WhenICorrectItToParkerWithACaretPosition()
+        {
+            await _page.FillAsync("#developer-name", "Parker");
+        }
+
+        [Then(@"the name input should have the value 'Parker'")]
+        public async Task ThenTheNameInputShouldHaveTheValueParker()
+        {
+            var value = await _page.GetAttributeAsync("#developer-name", "value");
+            value.Should().Be("Parker");
+        }
+
+        // Other tests can be converted similarly...
+    }
+}
     }
 }
