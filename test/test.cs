@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 using System.Threading.Tasks;
 using FluentAssertions;
 
-namespace TestNamespace
+namespace PlaywrightTests
 {
     [TestFixture]
     public class TestClass
